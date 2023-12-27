@@ -1,11 +1,8 @@
-# Skill
-Template skill
+# CookingAgent
+This is the code for a conversational agent whose name is "CookingAgent".
 
 ## Description
-This is a skill template, see [the docs](https://docs.furhat.io/skills/#the-contents-of-a-skill) for a breakdown of the content. 
-For more example skills go to [our Github](https://github.com/FurhatRobotics/)
+For details, see [the docs](https://docs.google.com/document/d/1DYfsCOO14LMMWxOYNLEviswzTVBfzeLknPK9E_Ao568/edit). 
 
 ## Usage
-Max number of users is set to: 2
-Default interaction distance is set to: 1 m
-No other specific requirements. 
+It can be set into two modes: with memory and without memory.
