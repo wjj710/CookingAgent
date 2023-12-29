@@ -13,6 +13,10 @@ class MealTime : EnumEntity() {
     override fun toText(lang: Language): String {
         return generate(lang,"$value")
     }
+
+    override fun toString(): String {
+        return toText()
+    }
 }
 
 class MealType : EnumEntity() {
@@ -24,6 +28,10 @@ class MealType : EnumEntity() {
     // Method overridden to produce a spoken utterance of the place
     override fun toText(lang: Language): String {
         return generate(lang,"$value")
+    }
+
+    override fun toString(): String {
+        return toText()
     }
 }
 
@@ -37,6 +45,10 @@ class PeopleType : EnumEntity() {
     override fun toText(lang: Language): String {
         return generate(lang,"$value")
     }
+
+    override fun toString(): String {
+        return toText()
+    }
 }
 
 class Work : EnumEntity() {
@@ -49,6 +61,10 @@ class Work : EnumEntity() {
     override fun toText(lang: Language): String {
         return generate(lang,"$value")
     }
+
+    override fun toString(): String {
+        return toText()
+    }
 }
 
 class Mood : EnumEntity() {
@@ -60,5 +76,9 @@ class Mood : EnumEntity() {
     // Method overridden to produce a spoken utterance of the place
     override fun toText(lang: Language): String {
         return generate(lang,"$value")
+    }
+
+    override fun toString(): String {
+        return toText()
     }
 }
