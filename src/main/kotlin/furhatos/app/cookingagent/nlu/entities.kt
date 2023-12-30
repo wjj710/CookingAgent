@@ -22,7 +22,7 @@ class MealTime : EnumEntity() {
 class MealType : EnumEntity() {
 
     override fun getEnum(lang: Language): List<String> {
-        return listOf("French food", "Italian food", "American food", "Turkish food", "Chinese food", "Indian food")
+        return listOf("French food", "Italian food", "American food", "Turkish food", "Chinese food", "Indian food", "Dutch food")
     }
 
     // Method overridden to produce a spoken utterance of the place
@@ -38,7 +38,7 @@ class MealType : EnumEntity() {
 class PeopleType : EnumEntity() {
 
     override fun getEnum(lang: Language): List<String> {
-        return listOf("friends", "family", "lover")
+        return listOf("myself", "friends", "family", "partner")
     }
 
     // Method overridden to produce a spoken utterance of the place

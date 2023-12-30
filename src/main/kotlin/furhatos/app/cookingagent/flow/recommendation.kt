@@ -1,7 +1,6 @@
 package furhatos.app.cookingagent.flow
 
 import furhatos.app.cookingagent.*
-import furhatos.app.cookingagent.nlu.*
 import furhatos.flow.kotlin.*
 import com.theokanning.openai.service.OpenAiService
 import com.theokanning.openai.completion.chat.ChatCompletionRequest
@@ -11,7 +10,6 @@ import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.dataformat.csv.CsvParser
 import com.fasterxml.jackson.dataformat.csv.CsvSchema
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.sun.org.apache.xpath.internal.operations.Bool
 import furhatos.nlu.common.No
 import furhatos.nlu.common.Yes
 import furhatos.nlu.common.Number
@@ -29,16 +27,16 @@ val GivingRecommendation : State = state {
             val input = FileInputStream("local.csv")
             users.current.memdata.memory = readCsv(input)
         }
-        //copy user order to current episode and initialize the episode
+        //copy user request to current episode and initialize the episode
         val tem : CAMemory = CAMemory(0,"","",0,"",0,"","","",0,0,"")
         tem.index = users.current.memdata.memory.size+1
-        tem.mealTime = users.current.order.mealTime.toString()
-        tem.mealType = users.current.order.mealType.toString()
-        tem.peopleType = users.current.order.peopleType.toString()
-        tem.peopleNumber = users.current.order.peopleNumber?.value
-        tem.cookingTime = users.current.order.cookingTime?.value
-        tem.work = users.current.order.work.toString()
-        tem.mood = users.current.order.mood.toString()
+        tem.mealTime = users.current.request.mealTime.toString()
+        tem.mealType = users.current.request.mealType.toString()
+        tem.peopleType = users.current.request.peopleType.toString()
+        tem.peopleNumber = users.current.request.peopleNumber?.value
+        tem.cookingTime = users.current.request.cookingTime?.value
+        tem.work = users.current.request.work.toString()
+        tem.mood = users.current.request.mood.toString()
         users.current.memdata.episode = tem
         //find current episode in memory
         val ok : Boolean
@@ -87,7 +85,7 @@ val GivingRecommendation : State = state {
         }
         val robotResponse : String?
         if(!ok){
-            val userString = users.current.order.toString() + feedback
+            val userString = users.current.request.toString() + feedback
             robotResponse = call {
                 getChatCompletion(userString)
             } as String?
@@ -168,8 +166,10 @@ val GettingFeedback: State = state(parent = Interaction) {
 val service = OpenAiService(SERVICE_KEY)
 
 fun getChatCompletion(userstring: String): String? {
-    val instruction = "You are a personal cooking agent. You need to provide a human with fitting recipes according to his requirements. " +
-            "The recommendation should be no more than 50 words, and it should only contain the name of recipe, description of ingredients and cooking method."
+    val instruction = "You are a personal cooking agent. You need to provide a human with fitting recipes according to their requirements. " +
+            "The recommendation should be no more than 50 words. Your answer will be structured as follows: first, you provide the name of the dish. Describe very briefly why" +
+            "you picked this recipe. Then you will " +
+            "list all ingredients and their quantity. Lastly, you will provide the instructions step by step."
     val messages = mutableListOf(ChatMessage().apply { role = "system"; content = instruction })
     messages.add(ChatMessage().apply { role = "user"; content = userstring })
     val completionRequest = ChatCompletionRequest.builder()

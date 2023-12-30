@@ -5,8 +5,8 @@ import furhatos.flow.kotlin.NullSafeUserDataDelegate
 import furhatos.records.User
 import furhatos.app.cookingagent.flow.CAMemory
 
-// Associate an order to a user
-val User.order by NullSafeUserDataDelegate { AskRecommendationIntent() }
+// Associate a request to a user
+val User.request by NullSafeUserDataDelegate { AskRecommendationIntent() }
 
 class MemData(
     var memory : MutableList<CAMemory> = mutableListOf(),

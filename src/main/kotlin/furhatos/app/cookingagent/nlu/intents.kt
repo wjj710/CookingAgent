@@ -22,8 +22,28 @@ open class AskRecommendationIntent : Intent(), TextGenerator {
                 "I want you to recommend a recipe",
                 "I want to eat @mealTime with my @peopleType, please recommend a recipe",
                 "I would like to have @mealType, please recommend some food",
+                "I need to cook for @peopleNumber people",
+                "I am @work and I need to cook",
+                "I need a recipe that takes @cookingTime minutes",
                 "can you recommend a fitting recipe",
-                "I want you to recommend a fitting recipe"
+                "I want you to recommend a fitting recipe",
+                "I am @mood and I need to cook",
+                // Corrections
+                "It's for @mealTime",
+                "I want @mealTime",
+                "It should be @mealTime",
+                "I want @mealType",
+                "It should be @mealType",
+                "It's for @peopleNumber people",
+                "for @peopleNumber people",
+                "for @peopleNumber person",
+                "It should be @peopleNumber people",
+                "It should be @peopleType",
+                "It's for @peopleType",
+                "It should be @cookingTime minutes",
+                "Change it to @cookingTime minutes",
+                "I am @work",
+                "I am @mood",
         )
     }
 
@@ -78,7 +98,7 @@ class TellPeopleTypeIntent : Intent() {
     var peopleType : PeopleType? = null
 
     override fun getExamples(lang: Language): List<String> {
-        return listOf("my @peopleType", "I will eat with my @peopleType")
+        return listOf("@peopleType", "for @peopleType", "my @peopleType", "I will eat with my @peopleType")
     }
 }
 
@@ -86,7 +106,7 @@ class TellCookingTimeIntent : Intent() {
     var cookingTime : Number? = null
 
     override fun getExamples(lang: Language): List<String> {
-        return listOf("@cookingTime minutes")
+        return listOf("@cookingTime", "@cookingTime minutes")
     }
 }
 
