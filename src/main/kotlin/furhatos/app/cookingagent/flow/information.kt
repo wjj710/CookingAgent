@@ -116,7 +116,7 @@ val RequestMealType : State = state(parent = Interaction) {
     }
 
     onEvent<TellMealTypeOptions> {
-        furhat.say("Some examples are French food, Chinese food or Italian food.")
+        furhat.say("The options are French food, Italian food, American food, Turkish food, Chinese food, Indian food, and Dutch food")
         reentry()
     }
 }
