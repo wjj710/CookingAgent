@@ -18,6 +18,7 @@ import java.io.OutputStream
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.File
+import java.time.Duration
 
 val GivingRecommendation : State = state {
     onEntry {
@@ -165,7 +166,7 @@ val GettingFeedback: State = state(parent = Interaction) {
 }
 
 //call openai service
-val service = OpenAiService(SERVICE_KEY)
+val service = OpenAiService(SERVICE_KEY, Duration.ofSeconds(90))
 
 fun getChatCompletion(userstring: String): String? {
     val instruction = "You are a personal cooking agent. You need to provide a human with fitting recipes according to their requirements. " +
@@ -182,7 +183,8 @@ fun getChatCompletion(userstring: String): String? {
         val completion = service.createChatCompletion(completionRequest).choices.first().message.content
         return completion.trim()
     } catch (e: Exception) {
-        println("Problem with connection to OpenAI")
+        //println("Problem with connection to OpenAI")
+        println(e)
     }
     return null
 }
