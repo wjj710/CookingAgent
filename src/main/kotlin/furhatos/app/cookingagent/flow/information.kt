@@ -168,7 +168,7 @@ val RequestCookingTime : State = state(parent = Interaction) {
 
 val RequestWork : State = state(parent = Interaction) {
     onEntry {
-        furhat.ask("How's your day? Are you tired?")
+        furhat.ask("How's your day? Are you tired or relaxed?")
     }
 
     onResponse<TellWorkIntent> {
