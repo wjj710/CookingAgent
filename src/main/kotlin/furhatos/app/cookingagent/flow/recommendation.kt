@@ -39,7 +39,7 @@ val GivingRecommendation : State = state {
         tem.mood = users.current.request.mood.toString()
         users.current.memdata.episode = tem
         //find current episode in memory
-        val ok : Boolean
+        var ok : Boolean
         var diff : Int = -1
         var ind : Int = -1
         var firstTime : Boolean = true
@@ -84,6 +84,8 @@ val GivingRecommendation : State = state {
             }
         }
         val robotResponse : String?
+        //ok = false //used to transform it into an agent without memory.
+        //feedback = "" //used to transform it into an agent without memory.
         if(!ok){
             val userString = users.current.request.toString() + feedback
             robotResponse = call {
