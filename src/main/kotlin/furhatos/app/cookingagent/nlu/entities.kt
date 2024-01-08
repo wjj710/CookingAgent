@@ -38,7 +38,7 @@ class MealType : EnumEntity() {
 class PeopleType : EnumEntity() {
 
     override fun getEnum(lang: Language): List<String> {
-        return listOf("myself", "friends", "family", "partner")
+        return listOf("myself", "friends", "family", "partner", "girlfriend", "boyfriend")
     }
 
     // Method overridden to produce a spoken utterance of the place
@@ -70,7 +70,7 @@ class Work : EnumEntity() {
 class Mood : EnumEntity() {
 
     override fun getEnum(lang: Language): List<String> {
-        return listOf("happy", "upset")
+        return listOf("happy", "upset", "sad", "angry", "excited", "depressed", "stressed")
     }
 
     // Method overridden to produce a spoken utterance of the place

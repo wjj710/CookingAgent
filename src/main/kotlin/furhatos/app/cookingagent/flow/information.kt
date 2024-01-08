@@ -35,11 +35,7 @@ val GettingInformation = state {
     }
 }
 
-val EditInformation: State = state {
-    onEntry {
-        furhat.ask("What would you like to change?")
-    }
-
+val AskRecommendation: State = state {
     onResponse<AskRecommendationIntent> {
         val oldRequest = users.current.request
 
@@ -69,7 +65,13 @@ val EditInformation: State = state {
     }
 }
 
-val ConfirmingInformation: State = state {
+val EditInformation: State = state(parent = AskRecommendation) {
+    onEntry {
+        furhat.ask("What would you like to change?")
+    }
+}
+
+val ConfirmingInformation: State = state(parent = AskRecommendation) {
     onEntry {
         val request = users.current.request
         furhat.ask("You are looking for a recipe for ${request.mealTime}. It should be ${request.mealType}. The meal " +
@@ -180,7 +182,7 @@ val RequestWork : State = state(parent = Interaction) {
 
 val RequestMood : State = state(parent = Interaction) {
     onEntry {
-        furhat.ask("How do you feel today?")
+        furhat.ask("How do you feel today? What is your mood?")
     }
 
     onResponse<TellMoodIntent> {
@@ -194,10 +196,7 @@ val RequestMood : State = state(parent = Interaction) {
     }
 
     onEvent<TellMoodOptions> {
-        furhat.say("Are you happy or upset?")
+        furhat.say("Are you happy, sad, excited, stressed, or upset?")
         reentry()
     }
 }
-
-
-
