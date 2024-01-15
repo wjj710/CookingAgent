@@ -19,6 +19,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.File
 import java.time.Duration
+import kotlin.math.abs
 
 val GivingRecommendation : State = state {
     onEntry {
@@ -52,8 +53,14 @@ val GivingRecommendation : State = state {
             if(record.mealTime == tem.mealTime && record.mealType == tem.mealType && record.peopleType == tem.peopleType){
                 //higher score indicates less similarity
                 var score : Int = 0
-                if(record.peopleNumber != tem.peopleNumber) score += 1
-                if(record.cookingTime != tem.cookingTime) score += 1
+                val rp : Int = record.peopleNumber!!
+                val tp : Int = tem.peopleNumber!!
+                val rc : Int = record.cookingTime!!
+                val tc : Int = tem.cookingTime!!
+                if(abs(rp-tp) > 5) score += 1
+                if(abs(rc-tc) > 10) score += 1
+                //if(record.peopleNumber != tem.peopleNumber) score += 1
+                //if(record.cookingTime != tem.cookingTime) score += 1
                 if(record.work != tem.work) score += 1
                 if(record.mood != tem.mood) score += 1
                 if(firstTime){
