@@ -178,8 +178,7 @@ val service = OpenAiService(SERVICE_KEY, Duration.ofSeconds(90))
 fun getChatCompletion(userstring: String): String? {
     val instruction = "You are a personal cooking agent. You need to provide a human with fitting recipes according to their requirements. " +
             "The recommendation should be no more than 50 words. Your answer will be structured as follows: first, you provide the name of the dish. Describe very briefly why" +
-            "you picked this recipe. Then you will " +
-            "list all ingredients and their quantity. Lastly, you will provide the instructions step by step."
+            "you picked this recipe. Then you will shortly list the ingredients and their quantities."
     val messages = mutableListOf(ChatMessage().apply { role = "system"; content = instruction })
     messages.add(ChatMessage().apply { role = "user"; content = userstring })
     val completionRequest = ChatCompletionRequest.builder()
