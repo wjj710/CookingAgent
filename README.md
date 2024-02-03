@@ -2,7 +2,7 @@
 This is the code for a conversational agent whose name is "CookingAgent".
 
 ## Introduction
-For details, see [the docs](https://docs.google.com/document/d/1DYfsCOO14LMMWxOYNLEviswzTVBfzeLknPK9E_Ao568/edit). 
+The cooking agent can provide the user with fitting recipes. The agent will first ask the user some questions like "What kind of food do you like?", "How many people will eat the meal?", etc. It will then use these information and the knowledge in past interactions to give a recommendation, which contains the name of the dish, ingredients and their quantity, instructions about how to cook the dish, etc.
 
 ## Usage
 
